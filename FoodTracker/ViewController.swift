@@ -17,6 +17,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
   override func viewDidLoad() {
     super.viewDidLoad()
     // Do any additional setup after loading the view, typically from a nib.
+    
+    // create instance of our searchController
+    self.searchController = UISearchController(searchResultsController: nil)
+    self.searchController.dimsBackgroundDuringPresentation = false
+    // we don't want the search bar to hide and slide everything up
+    self.searchController.hidesNavigationBarDuringPresentation = false
   }
 
   override func didReceiveMemoryWarning() {
@@ -37,7 +43,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
   // Mark - UISearchResultsUpdating
   
   func updateSearchResultsForSearchController(searchController: UISearchController) {
-    
+    // sometimes we have used .delegate or .datasource instead
+    self.searchController.searchResultsUpdater = self
   }
 
 }
