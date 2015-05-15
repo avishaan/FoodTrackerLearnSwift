@@ -18,6 +18,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
   // as we find foods that meet the search criteria we will save them here
   var filteredSuggestedSearchFoods:[String] = []
   
+  var scopeButtonTitles:[String] = ["Recommended", "Search Results", "Saved"]
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     // Do any additional setup after loading the view, typically from a nib.
@@ -35,6 +37,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     // update tableView header with the search bar which is coming from the searchController (via init)
     self.tableView.tableHeaderView = self.searchController.searchBar
     
+    self.searchController.searchBar.scopeButtonTitles = scopeButtonTitles
     // give us access to callbacks from the search bar
     self.searchController.searchBar.delegate = self
     
@@ -94,6 +97,16 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
       var foodMatch = food.rangeOfString(searchText)
       return foodMatch != nil
     })
+  }
+  
+  func makeRequest (searchString:String) {
+    let url = NSURL(string: "https://api.nutritionix.com/v1_1/search/\(searchString)?results=0%3A20&cal_min=0&cal_max=50000&fields=item_name%2Cbrand_name%2Citem_id%2Cbrand_id&appId=7ad4576a&appKey=9a380dac829740f50f5812805086c872")
+    let task = NSURLSession.sharedSession().dataTaskWithURL(url!, completionHandler: { (data, response, error) -> Void in
+      println(data)
+      println(response)
+    })
+    // execute the request
+    task.resume()
   }
   
 }
