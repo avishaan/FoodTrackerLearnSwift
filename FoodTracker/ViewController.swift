@@ -24,6 +24,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     // create instance of our searchController
     self.searchController = UISearchController(searchResultsController: nil)
+    self.searchController.searchResultsUpdater = self
     self.searchController.dimsBackgroundDuringPresentation = false
     // we don't want the search bar to hide and slide everything up
     self.searchController.hidesNavigationBarDuringPresentation = false
@@ -79,6 +80,13 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
   func updateSearchResultsForSearchController(searchController: UISearchController) {
     // sometimes we have used .delegate or .datasource instead
     self.searchController.searchResultsUpdater = self
+    
+    // get the search string
+    let searchString = self.searchController.searchBar.text
+    let selectedScopeButtonIndex = self.searchController.searchBar.selectedScopeButtonIndex
+    // call filter func
+    self.filterContentForSearch(searchString, scope: selectedScopeButtonIndex)
+    self.tableView.reloadData()
   }
   
   func filterContentForSearch (searchText:String, scope:Int) {
