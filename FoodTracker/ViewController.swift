@@ -14,6 +14,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
   
   var searchController:UISearchController!
   
+  var suggestedSearchFoods:[String] = []
+  // as we find foods that meet the search criteria we will save them here
+  var filteredSuggestedSearchFoods:[String] = []
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     // Do any additional setup after loading the view, typically from a nib.
@@ -35,6 +39,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     // make sure search result controller is presented in the current view controller
     self.definesPresentationContext = true
+    
+    self.suggestedSearchFoods = ["apple", "bagel", "banana", "beer", "bread", "carrots", "hummus", "swiss cheese", "sandwich", "eggs", "water", "soylent", "hotdog", "ice cream", "jelly donut", "ketchup", "milk", "mix nuts", "mustard", "oatmeal", "peanut butter", "pizza", "porkchops", "potato", "chips", "gin and tonic", "cake", "ice"]
   }
 
   override func didReceiveMemoryWarning() {
