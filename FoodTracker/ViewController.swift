@@ -81,5 +81,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     self.searchController.searchResultsUpdater = self
   }
   
+  func filterContentForSearch (searchText:String, scope:Int) {
+    self.filteredSuggestedSearchFoods = self.suggestedSearchFoods.filter({ (food:String) -> Bool in
+      var foodMatch = food.rangeOfString(searchText)
+      return foodMatch != nil
+    })
+  }
+  
 }
 
