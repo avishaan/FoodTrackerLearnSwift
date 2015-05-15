@@ -9,7 +9,7 @@
 import UIKit
 
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, UISearchControllerDelegate, UISearchResultsUpdating {
-
+  
   @IBOutlet weak var tableView: UITableView!
   
   var searchController:UISearchController!
@@ -42,7 +42,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     self.suggestedSearchFoods = ["apple", "bagel", "banana", "beer", "bread", "carrots", "hummus", "swiss cheese", "sandwich", "eggs", "water", "soylent", "hotdog", "ice cream", "jelly donut", "ketchup", "milk", "mix nuts", "mustard", "oatmeal", "peanut butter", "pizza", "porkchops", "potato", "chips", "gin and tonic", "cake", "ice"]
   }
-
+  
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
     // Dispose of any resources that can be recreated.
@@ -55,7 +55,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
   }
   
   func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return 0
+    if (self.searchController.active) {
+      // if search controller is active use filtered suggested search foods
+      return self.filteredSuggestedSearchFoods.count
+    } else {
+      return self.suggestedSearchFoods.count
+    }
   }
   
   // Mark - UISearchResultsUpdating
@@ -64,6 +69,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     // sometimes we have used .delegate or .datasource instead
     self.searchController.searchResultsUpdater = self
   }
-
+  
 }
 
