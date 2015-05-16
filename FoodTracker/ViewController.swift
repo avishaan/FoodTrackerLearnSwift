@@ -153,6 +153,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
       var jsonDictionary = NSJSONSerialization.JSONObjectWithData(data , options: NSJSONReadingOptions.MutableLeaves, error: &conversionError) as? NSDictionary
       println(jsonDictionary)
     })
+    task.resume()
     
   }
   
