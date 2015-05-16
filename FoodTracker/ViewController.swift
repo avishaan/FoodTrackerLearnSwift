@@ -56,7 +56,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     // Dispose of any resources that can be recreated.
   }
   
-  // Mark - UITableViewDataSource
+  // MARK - UITableViewDataSource
   
   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCellWithIdentifier("Cell") as UITableViewCell
@@ -82,7 +82,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
   }
   
-  // Mark - UISearchResultsUpdating
+  // MARK - UISearchResultsUpdating
   
   func updateSearchResultsForSearchController(searchController: UISearchController) {
     // sometimes we have used .delegate or .datasource instead
@@ -103,7 +103,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     })
   }
   
-  // Mark - UISearchBarDelgate
+  // MARK - UISearchBarDelgate
   
   func searchBarSearchButtonClicked(searchBar: UISearchBar) {
     // gets called when we press the search button
