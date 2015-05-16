@@ -110,7 +110,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
   func makeRequest (searchString:String) {
     let url = NSURL(string: "https://api.nutritionix.com/v1_1/search/\(searchString)?results=0%3A20&cal_min=0&cal_max=50000&fields=item_name%2Cbrand_name%2Citem_id%2Cbrand_id&appId=7ad4576a&appKey=9a380dac829740f50f5812805086c872")
     let task = NSURLSession.sharedSession().dataTaskWithURL(url!, completionHandler: { (data, response, error) -> Void in
-      println(data)
+      // convert to string from NSData I think
+      var stringData = NSString(data: data, encoding: NSUTF8StringEncoding)
+      println(stringData)
       println(response)
     })
     // execute the request
