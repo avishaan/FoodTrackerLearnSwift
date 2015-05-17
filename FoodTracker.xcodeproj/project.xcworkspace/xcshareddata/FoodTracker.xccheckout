@@ -22,7 +22,7 @@
 		<key>22FE4687518BC1B5BECA1681A80EF7954CC1B692</key>
 		<string>../..</string>
 		<key>E037564209F4271640D11215AB04FFA8916AF6F2</key>
-		<string>../../../..</string>
+		<string>../../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>github.com:codeHatcher/FoodTrackerLearnSwift.git</string>
@@ -38,7 +38,7 @@
 			<key>IDESourceControlWCCIdentifierKey</key>
 			<string>E037564209F4271640D11215AB04FFA8916AF6F2</string>
 			<key>IDESourceControlWCCName</key>
-			<string>..</string>
+			<string></string>
 		</dict>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
