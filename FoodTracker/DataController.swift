@@ -29,7 +29,7 @@ class DataController {
             let fieldsDictionary = itemDictionary["fields"] as NSDictionary
             if itemDictionary["item_name"] != nil {
               let idValue:String = itemDictionary["_id"]! as String
-              let name:String = itemDictionary["item_name"]! as String
+              let name:String = fieldsDictionary["item_name"]! as String
               searchResult = (name: name, idValue: idValue)
               usdaItemsSearchResults += [searchResult]
             }
