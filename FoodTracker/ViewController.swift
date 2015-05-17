@@ -185,6 +185,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         if jsonDictionary != nil {
           self.jsonResponse = jsonDictionary!
           self.apiSearchForFoods = DataController.jsonAsUSDAIdAndNameSearchResults(jsonDictionary!)
+          // we need to call the reloadData on the main thread, if we don't it will update UI on the background thread and just take forever to update
+          dispatch_async(dispatch_get_main_queue(), { () -> Void in
+            self.tableView.reloadData()
+          })
         } else {
           let errorString = NSString(data: data , encoding: NSUTF8StringEncoding)
           println("Error in parsing: \(errorString)")
