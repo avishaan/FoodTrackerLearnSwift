@@ -152,6 +152,19 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
       // convert string json to NSDictionary
       var jsonDictionary = NSJSONSerialization.JSONObjectWithData(data , options: NSJSONReadingOptions.MutableLeaves, error: &conversionError) as? NSDictionary
       println(jsonDictionary)
+      
+      if conversionError != nil {
+        println(conversionError!.localizedDescription)
+        let errorString = NSString(data: data , encoding: NSUTF8StringEncoding)
+        println("Error in parsing: \(errorString)")
+      } else {
+        if jsonDictionary != nil {
+          
+        } else {
+          let errorString = NSString(data: data , encoding: NSUTF8StringEncoding)
+          println("Error in parsing: \(errorString)")
+        }
+      }
     })
     task.resume()
     
