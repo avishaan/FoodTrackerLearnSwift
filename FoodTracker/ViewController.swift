@@ -65,10 +65,20 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCellWithIdentifier("Cell") as UITableViewCell
     var foodName:String
-    if (self.searchController.active){
-      foodName = filteredSuggestedSearchFoods[indexPath.row]
+    
+    let selectedScopeButtonIndex = self.searchController.searchBar.selectedScopeButtonIndex
+    
+    if selectedScopeButtonIndex == 0 {
+      if (self.searchController.active){
+        foodName = filteredSuggestedSearchFoods[indexPath.row]
+      } else {
+        foodName = suggestedSearchFoods[indexPath.row]
+      }
+    } else if selectedScopeButtonIndex == 1 {
+      // get the name from the tuple at the correct row
+      foodName = apiSearchForFoods[indexPath.row].name
     } else {
-      foodName = suggestedSearchFoods[indexPath.row]
+      foodName = ""
     }
     
     cell.textLabel?.text = foodName
@@ -78,11 +88,19 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
   }
   
   func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    if (self.searchController.active) {
-      // if search controller is active use filtered suggested search foods
-      return self.filteredSuggestedSearchFoods.count
+    // see which search scope button is selected
+    let selectedScopeButtonIndex = self.searchController.searchBar.selectedScopeButtonIndex
+    if selectedScopeButtonIndex == 0 {
+      if (self.searchController.active) {
+        // if search controller is active use filtered suggested search foods
+        return self.filteredSuggestedSearchFoods.count
+      } else {
+        return self.suggestedSearchFoods.count
+      }
+    } else if selectedScopeButtonIndex == 1 {
+      return self.apiSearchForFoods.count
     } else {
-      return self.suggestedSearchFoods.count
+      return 0
     }
   }
   
