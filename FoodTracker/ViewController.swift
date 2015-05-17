@@ -22,7 +22,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
   // as we find foods that meet the search criteria we will save them here
   var filteredSuggestedSearchFoods:[String] = []
   
+  var apiSearchForFoods:[(name:String, idValue:String)] = []
+  
   var scopeButtonTitles:[String] = ["Recommended", "Search Results", "Saved"]
+  
+  var jsonResponse:NSDictionary!
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -160,7 +164,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         println("Error in parsing: \(errorString)")
       } else {
         if jsonDictionary != nil {
-          
+          self.jsonResponse = jsonDictionary!
+          self.apiSearchForFoods = DataController.jsonAsUSDAIdAndNameSearchResults(jsonDictionary!)
         } else {
           let errorString = NSString(data: data , encoding: NSUTF8StringEncoding)
           println("Error in parsing: \(errorString)")
