@@ -147,7 +147,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
       // code evals after completion of request
       
       // convert to string
-      var stringData = NSString(data: data, encoding: NSUTF8StringEncoding)
+//      var stringData = NSString(data: data, encoding: NSUTF8StringEncoding)
+//      println(stringData)
       var conversionError:NSError?
       // convert string json to NSDictionary
       var jsonDictionary = NSJSONSerialization.JSONObjectWithData(data , options: NSJSONReadingOptions.MutableLeaves, error: &conversionError) as? NSDictionary
