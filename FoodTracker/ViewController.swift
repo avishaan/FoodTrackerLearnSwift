@@ -104,6 +104,34 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
   }
   
+  // MARK - UITableViewDelegate
+  
+  func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    // control flow based on which of the 3 search buttons are selected
+    let selectedScopeButtonIndex = self.searchController.searchBar.selectedScopeButtonIndex
+    
+    if selectedScopeButtonIndex == 0 {
+      var searchFoodName:String
+      if self.searchController.active {
+        searchFoodName = filteredSuggestedSearchFoods[indexPath.row]
+      } else {
+        searchFoodName = suggestedSearchFoods[indexPath.row]
+      }
+      // either way we need to switch the selected scope button over
+      self.searchController.searchBar.selectedScopeButtonIndex = 1
+      // and then make the request using that search term
+      makeRequest(searchFoodName)
+      
+    } else if selectedScopeButtonIndex == 1 {
+      
+    } else if selectedScopeButtonIndex == 2 {
+      
+    } else {
+      
+    }
+    
+  }
+  
   // MARK - UISearchResultsUpdating
   
   func updateSearchResultsForSearchController(searchController: UISearchController) {
