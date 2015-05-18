@@ -46,7 +46,25 @@ class DataController {
       let results:[AnyObject] = json["hits"]! as [AnyObject]
       
       for itemDictionary in results {
-        
+        // check that there is an id and that it equals the idValue
+        if itemDictionary["_id"] != nil && itemDictionary["_id"] as String == idValue {
+          
+          // make sure we don't save the same object twice into core data
+          let managedObjectContext = (UIApplication.sharedApplication().delegate as AppDelegate).managedObjectContext
+          var requestForUSDAItem = NSFetchRequest(entityName: "USDAItem")
+          
+          let itemDictionaryId = itemDictionary["_id"]! as String
+          
+          // does the idValue equal itemDictionaryId, you replace the %@ with the second argument passed in
+          // predicate
+          let predicate = NSPredicate(format: "idValue == %@", itemDictionaryId)
+          requestForUSDAItem.predicate = predicate
+          
+          var error:NSError?
+          
+          var items = managedObjectContext?.executeFetchRequest(requestForUSDAItem, error: &error)
+          
+        }
       }
     }
   }
