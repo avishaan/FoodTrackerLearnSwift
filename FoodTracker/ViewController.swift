@@ -60,7 +60,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     // Dispose of any resources that can be recreated.
   }
   
-  // MARK - UITableViewDataSource
+  // MARK: - UITableViewDataSource
   
   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCellWithIdentifier("Cell") as UITableViewCell
@@ -104,7 +104,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
   }
   
-  // MARK - UITableViewDelegate
+  // MARK: - UITableViewDelegate
   
   func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
     // control flow based on which of the 3 search buttons are selected
@@ -132,7 +132,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
   }
   
-  // MARK - UISearchResultsUpdating
+  // MARK: - UISearchResultsUpdating
   
   func updateSearchResultsForSearchController(searchController: UISearchController) {
     // sometimes we have used .delegate or .datasource instead
@@ -153,7 +153,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     })
   }
   
-  // MARK - UISearchBarDelgate
+  // MARK: - UISearchBarDelgate
   
   func searchBarSearchButtonClicked(searchBar: UISearchBar) {
     self.searchController.searchBar.selectedScopeButtonIndex = 1
