@@ -64,6 +64,14 @@ class DataController {
           
           var items = managedObjectContext?.executeFetchRequest(requestForUSDAItem, error: &error)
           
+          // if items exist, don't write again
+          if items?.count != 0 {
+            // item is already saved so don't save it again
+            return
+          } else {
+            // we haven't save to coreData yet so go ahead and do that
+          }
+          
         }
       }
     }
