@@ -178,6 +178,9 @@ class DataController {
                 else {
                   usdaItem.energy = "0"
                 }
+                
+                // save the USDA item
+                (UIApplication.sharedApplication().delegate as AppDelegate).saveContext()
               }
             }
           }
