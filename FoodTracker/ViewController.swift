@@ -60,7 +60,18 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     self.suggestedSearchFoods = ["apple", "bagel", "banana", "beer", "bread", "carrots", "hummus", "swiss cheese", "sandwich", "eggs", "water", "soylent", "hotdog", "ice cream", "jelly donut", "ketchup", "milk", "mix nuts", "mustard", "oatmeal", "peanut butter", "pizza", "porkchops", "potato", "chips", "gin and tonic", "cake", "ice"]
   }
-  
+  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    // check the identifier to make sure it's the segue we want
+    if segue.identifier == "toDetailedVCSegue" {
+      // it's the detailed view controller segue
+      // check what the send was and display accordingly (nil sender means from api results and not favorited)
+      if sender != nil {
+        // this is coming from favorited/saved list where we already have it saved as type USDAItem
+        var detailedVC = segue.destinationViewController as DetailViewController
+        detailedVC.usdaItem = sender as? USDAItem
+      }
+    }
+  }
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
     // Dispose of any resources that can be recreated.
@@ -143,13 +154,24 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
       makeRequest(searchFoodName)
       
     } else if selectedScopeButtonIndex == 1 {
-      // at this point you have clicked on an item in the search results so we will go ahead and save it because we figure you are interested enough to click then we should save it
+      // at this point you have clicked on an item in the search results
+      // we aren't sending anything as the sender, nil is how we will identify that it was sent from here
+      self.performSegueWithIdentifier("toDetailVCSegue", sender: nil)
+      // go ahead and save it because we figure you are interested enough to click then we should save it
       // get the idValue from the tuple that matches the row we are looking at
       let idValue = apiSearchForFoods[indexPath.row].idValue
       self.dataController.saveUSDAItemForId(idValue, json: self.jsonResponse)
       
     } else if selectedScopeButtonIndex == 2 {
-      
+      if self.searchController.active {
+        // if search controller is active we have searched so get from the filteredFavorted items
+        let usdaItem = filteredFavoritedUSDAItems[indexPath.row].idValue
+        self.performSegueWithIdentifier("toDetailedVCSegue", sender: usdaItem)
+      } else {
+        // search controller not active, take it from the entire list of favorited USDA items
+        let usdaItem = favoritedUSDAItems[indexPath.row].idValue
+        self.performSegueWithIdentifier("toDetailedVCSegue", sender: usdaItem)
+      }
     } else {
       
     }
