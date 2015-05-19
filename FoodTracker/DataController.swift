@@ -41,7 +41,7 @@ class DataController {
     return usdaItemsSearchResults
   }
   
-  func saveUSDAItemForId(idValue: String, json : NSDictionary) {
+  func saveUSDAItemForId(idValue: String, json: NSDictionary) {
     if json["hits"] != nil {
       let results:[AnyObject] = json["hits"]! as [AnyObject]
       
@@ -67,8 +67,11 @@ class DataController {
           // if items exist, don't write again
           if items?.count != 0 {
             // item is already saved so don't save it again
+            println("The item was already saved")
             return
           } else {
+            println("Let's save this to Core Data!")
+            
             // we haven't save to coreData yet so go ahead and do that
             let entityDescription = NSEntityDescription.entityForName("USDAItem", inManagedObjectContext: managedObjectContext!)
             let usdaItem = USDAItem(entity: entityDescription!, insertIntoManagedObjectContext: managedObjectContext!)
