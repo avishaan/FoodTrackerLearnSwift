@@ -172,6 +172,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
   }
   
   func searchBar(searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
+    if selectedScope == 2 {
+      // when we press the "saved" scope button item we should get the saved items
+      requestFavoritedUSDAItems()
+    }
     self.tableView.reloadData()
   }
   
@@ -242,7 +246,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
   
   // MARK: Setup CoreData 
   
-  func requestfavoritedUSDAItems() {
+  func requestFavoritedUSDAItems() {
     let fetchRequest = NSFetchRequest(entityName: "USDAItem")
     let appDelegate = (UIApplication.sharedApplication().delegate as AppDelegate)
     let managedObjectContext = appDelegate.managedObjectContext
