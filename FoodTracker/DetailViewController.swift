@@ -9,7 +9,6 @@
 import UIKit
 import CoreData
 
-@objc (USDAItem)
 class DetailViewController: UIViewController {
 
   @IBOutlet weak var textView: UITextView!
