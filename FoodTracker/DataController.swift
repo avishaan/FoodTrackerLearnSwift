@@ -81,8 +81,8 @@ class DataController {
             if itemDictionary["fields"] != nil {
               let fieldsDictionary = itemDictionary["fields"]! as NSDictionary
               
-              if fieldsDictionary["items_name"] != nil {
-                usdaItem.name = fieldsDictionary["items_name"]! as String
+              if fieldsDictionary["item_name"] != nil {
+                usdaItem.name = fieldsDictionary["item_name"]! as String
               }
               
               if fieldsDictionary["usda_fields"] != nil {

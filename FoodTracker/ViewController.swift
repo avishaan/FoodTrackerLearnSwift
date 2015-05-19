@@ -82,6 +82,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     } else if selectedScopeButtonIndex == 1 {
       // get the name from the tuple at the correct row
       foodName = apiSearchForFoods[indexPath.row].name
+      
+    } else if selectedScopeButtonIndex == 2 {
+      foodName = self.favoritedUSDAItems[indexPath.row].name
     } else {
       foodName = ""
     }
@@ -104,6 +107,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
       }
     } else if selectedScopeButtonIndex == 1 {
       return self.apiSearchForFoods.count
+    } else if selectedScopeButtonIndex == 2 {
+      return self.favoritedUSDAItems.count
     } else {
       return 0
     }
@@ -251,6 +256,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     let appDelegate = (UIApplication.sharedApplication().delegate as AppDelegate)
     let managedObjectContext = appDelegate.managedObjectContext
     self.favoritedUSDAItems = managedObjectContext?.executeFetchRequest(fetchRequest, error: nil) as [USDAItem]
+    println(self.favoritedUSDAItems[0].name)
   }
   
 }
