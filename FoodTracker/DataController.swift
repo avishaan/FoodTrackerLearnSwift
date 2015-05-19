@@ -70,6 +70,18 @@ class DataController {
             return
           } else {
             // we haven't save to coreData yet so go ahead and do that
+            let entityDescription = NSEntityDescription.entityForName("USDAItem", inManagedObjectContext: managedObjectContext!)
+            let usdaItem = USDAItem(entity: entityDescription!, insertIntoManagedObjectContext: managedObjectContext!)
+            usdaItem.idValue = itemDictionary["_id"]! as String
+            usdaItem.dateAdded = NSDate()
+            
+            if itemDictionary["fields"] != nil {
+              let fieldsDictionary = itemDictionary["fields"]! as NSDictionary
+              
+              if fieldsDictionary["items_name"] != nil {
+                usdaItem.name = fieldsDictionary["items_name"]! as String
+              }
+            }
           }
           
         }
