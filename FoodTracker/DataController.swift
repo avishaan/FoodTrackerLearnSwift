@@ -142,6 +142,42 @@ class DataController {
                 else {
                   usdaItem.protein = "0"
                 }
+                
+                // check and save sugar information if it exists
+                if usdaFieldsDictionary["SUGAR"] != nil {
+                  let sugarDictionary = usdaFieldsDictionary["SUGAR"]! as NSDictionary
+                  if sugarDictionary["value"] != nil {
+                    let sugarValue:AnyObject = sugarDictionary["value"]!
+                    usdaItem.sugar = "\(sugarValue)"
+                  }
+                }
+                else {
+                  usdaItem.sugar = "0"
+                }
+                
+                // check and save vitamin c information if it exists
+                if usdaFieldsDictionary["VITC"] != nil {
+                  let vitaminCDictionary = usdaFieldsDictionary["VITC"]! as NSDictionary
+                  if vitaminCDictionary["value"] != nil {
+                    let vitaminCValue: AnyObject = vitaminCDictionary["value"]!
+                    usdaItem.vitaminC = "\(vitaminCValue)"
+                  }
+                }
+                else {
+                  usdaItem.vitaminC = "0"
+                }
+                
+                // check and save calories information if it exists
+                if usdaFieldsDictionary["ENERC_KCAL"] != nil {
+                  let energyDictionary = usdaFieldsDictionary["ENERC_KCAL"]! as NSDictionary
+                  if energyDictionary["value"] != nil {
+                    let energyValue: AnyObject = energyDictionary["value"]!
+                    usdaItem.energy = "\(energyValue)"
+                  }
+                }
+                else {
+                  usdaItem.energy = "0"
+                }
               }
             }
           }
