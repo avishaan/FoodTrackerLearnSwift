@@ -94,6 +94,54 @@ class DataController {
                   // if there is no calcium value then use the following
                   usdaItem.calcium = "0"
                 }
+                
+                // save carbs information if it exists
+                if usdaFieldsDictionary["CHOCDF"] != nil {
+                  let carbohydrateDictionary = usdaFieldsDictionary["CHOCDF"]! as NSDictionary
+                  if carbohydrateDictionary["value"] != nil {
+                    let carbohydrateValue: AnyObject = carbohydrateDictionary["value"]!
+                    usdaItem.carbohydrate = "\(carbohydrateValue)"
+                  }
+                }
+                else {
+                  usdaItem.carbohydrate = "0"
+                }
+                
+                // save fat information if it exists
+                if usdaFieldsDictionary["FAT"] != nil {
+                  let fatTotalDictionary = usdaFieldsDictionary["FAT"]! as NSDictionary
+                  if fatTotalDictionary["value"] != nil {
+                    let fatTotalValue:AnyObject = fatTotalDictionary["value"]!
+                    usdaItem.fatTotal = "\(fatTotalValue)"
+                  }
+                }
+                else {
+                  usdaItem.fatTotal = "0"
+                }
+                
+                // check and save cholesterol information if it exists
+                if usdaFieldsDictionary["CHOLE"] != nil {
+                  let cholesterolDictionary = usdaFieldsDictionary["CHOLE"]! as NSDictionary
+                  if cholesterolDictionary["value"] != nil {
+                    let cholesterolValue: AnyObject = cholesterolDictionary["value"]!
+                    usdaItem.cholesterol = "\(cholesterolValue)"
+                  }
+                }
+                else {
+                  usdaItem.cholesterol = "0"
+                }
+                
+                // check and save protein information if it exists
+                if usdaFieldsDictionary["PROCNT"] != nil {
+                  let proteinDictionary = usdaFieldsDictionary["PROCNT"]! as NSDictionary
+                  if proteinDictionary["value"] != nil {
+                    let proteinValue: AnyObject = proteinDictionary["value"]!
+                    usdaItem.protein = "\(proteinValue)"
+                  }
+                }
+                else {
+                  usdaItem.protein = "0"
+                }
               }
             }
           }
