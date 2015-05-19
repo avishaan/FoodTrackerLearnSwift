@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 import CoreData
 
+let kUSDAItemCompleted = "USDAItemInstanceComplete"
 class DataController {
   
   //create class function, we won't need an instance of the data controller, pass in dictionary and we want tuples coming back out
@@ -184,6 +185,8 @@ class DataController {
                 
                 // save the USDA item
                 (UIApplication.sharedApplication().delegate as AppDelegate).saveContext()
+                // notify any subscribers of this change
+                NSNotificationCenter.defaultCenter().postNotificationName(kUSDAItemCompleted, object: usdaItem)
               }
             }
           }
