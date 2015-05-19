@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, UISearchControllerDelegate, UISearchResultsUpdating {
   
@@ -29,6 +30,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
   var jsonResponse:NSDictionary!
   
   var dataController = DataController()
+  
+  var favoritedUSDAItems:[USDAItem] = []
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -235,6 +238,15 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     })
     task.resume()
     
+  }
+  
+  // MARK: Setup CoreData 
+  
+  func requestfavoritedUSDAItems() {
+    let fetchRequest = NSFetchRequest(entityName: "USDAItem")
+    let appDelegate = (UIApplication.sharedApplication().delegate as AppDelegate)
+    let managedObjectContext = appDelegate.managedObjectContext
+    self.favoritedUSDAItems = managedObjectContext?.executeFetchRequest(fetchRequest, error: nil) as [USDAItem]
   }
   
 }
