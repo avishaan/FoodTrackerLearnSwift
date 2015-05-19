@@ -59,6 +59,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     self.definesPresentationContext = true
     
     self.suggestedSearchFoods = ["apple", "bagel", "banana", "beer", "bread", "carrots", "hummus", "swiss cheese", "sandwich", "eggs", "water", "soylent", "hotdog", "ice cream", "jelly donut", "ketchup", "milk", "mix nuts", "mustard", "oatmeal", "peanut butter", "pizza", "porkchops", "potato", "chips", "gin and tonic", "cake", "ice"]
+    
+    // hook up notification system to listen for events
+    // this view controller is now listening and the function usdaItemDidComplete will fire
+    NSNotificationCenter.defaultCenter().addObserver(self, selector: "usdaItemDidComplete:", name: kUSDAItemCompleted, object: nil)
   }
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
     // check the identifier to make sure it's the segue we want
@@ -296,6 +300,20 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     let managedObjectContext = appDelegate.managedObjectContext
     self.favoritedUSDAItems = managedObjectContext?.executeFetchRequest(fetchRequest, error: nil) as [USDAItem]
     //println(self.favoritedUSDAItems[0].name)
+  }
+  
+  // MARK: Setup NSNotificationCenter
+  
+  // function responds to notification as defined in the viewDidLoad and DataController
+  func usdaItemDidComplete(notification:NSNotification) {
+    requestFavoritedUSDAItems()
+    println("usdaItem event triggered function")
+    let selectedScopeButtonIndex = self.searchController.searchBar.selectedScopeButtonIndex
+    
+    if selectedScopeButtonIndex == 2 {
+      // update the tableView data
+      self.tableView.reloadData()
+    }
   }
   
 }
