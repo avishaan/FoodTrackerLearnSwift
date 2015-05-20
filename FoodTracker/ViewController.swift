@@ -64,6 +64,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     // this view controller is now listening and the function usdaItemDidComplete will fire
     NSNotificationCenter.defaultCenter().addObserver(self, selector: "usdaItemDidComplete:", name: kUSDAItemCompleted, object: nil)
   }
+  
+  // need to remove observer when deinitializing the view controller
+  deinit {
+    NSNotificationCenter.defaultCenter().removeObserver(self)
+  }
+  
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
     // check the identifier to make sure it's the segue we want
     if segue.identifier == "toDetailedVCSegue" {
@@ -307,7 +313,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
   // function responds to notification as defined in the viewDidLoad and DataController
   func usdaItemDidComplete(notification:NSNotification) {
     requestFavoritedUSDAItems()
-    println("usdaItem event triggered function")
+    println("usdaItem event triggered fnc in ViewController")
     let selectedScopeButtonIndex = self.searchController.searchBar.selectedScopeButtonIndex
     
     if selectedScopeButtonIndex == 2 {
