@@ -73,6 +73,46 @@ class DetailViewController: UIViewController {
     let titleString = NSAttributedString(string: "\(usdaItem.name)\n", attributes: titleAttributesDictionary)
     itemAttributedString.appendAttributedString(titleString)
     
+    var leftAllignedParagraphStyle = NSMutableParagraphStyle()
+    leftAllignedParagraphStyle.alignment = NSTextAlignment.Left
+    leftAllignedParagraphStyle.lineSpacing = 20.0
+    
+    var styleFirstWordAttributesDictionary = [
+      NSForegroundColorAttributeName: UIColor.blackColor(),
+      NSFontAttributeName: UIFont.boldSystemFontOfSize(18.0),
+      NSParagraphStyleAttributeName: leftAllignedParagraphStyle,
+    ]
+    
+    var style1AttributesDictionary = [
+      NSForegroundColorAttributeName: UIColor.darkGrayColor(),
+      NSFontAttributeName: UIFont.boldSystemFontOfSize(18.0),
+      NSParagraphStyleAttributeName: leftAllignedParagraphStyle,
+    ]
+    
+    var style2AttributesDictionary = [
+      NSForegroundColorAttributeName: UIColor.lightGrayColor(),
+      NSFontAttributeName: UIFont.systemFontOfSize(18.0),
+      NSParagraphStyleAttributeName: leftAllignedParagraphStyle,
+    ]
+   
+    // add calcium to our existing string
+    let calciumTitleString = NSAttributedString(string: "Calcium ", attributes: styleFirstWordAttributesDictionary)
+    let calciumBodyString = NSAttributedString(string: String(format: "%.2f", usdaItem.calcium) + "%\n", attributes: style1AttributesDictionary)
+    itemAttributedString.appendAttributedString(calciumTitleString)
+    itemAttributedString.appendAttributedString(calciumBodyString)
+    
+    // add carbohydrate to our existing string
+    let carbohydrateTitleString = NSAttributedString(string: "Carbohydrate ", attributes: styleFirstWordAttributesDictionary)
+    let carbohydrateBodyString = NSAttributedString(string: "\(usdaItem.carbohydrate)% \n", attributes: style2AttributesDictionary)
+    itemAttributedString.appendAttributedString(carbohydrateTitleString)
+    itemAttributedString.appendAttributedString(carbohydrateBodyString)
+    
+    // add cholesterol to our existing string
+    let cholesterolTitleString = NSAttributedString(string: "Cholesterol ", attributes: styleFirstWordAttributesDictionary)
+    let cholesterolBodyString = NSAttributedString(string: "\(usdaItem.cholesterol)% \n", attributes: style1AttributesDictionary)
+    itemAttributedString.appendAttributedString(cholesterolTitleString)
+    itemAttributedString.appendAttributedString(cholesterolBodyString)
+    
     return itemAttributedString
     
   }
