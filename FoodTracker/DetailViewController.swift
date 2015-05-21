@@ -115,7 +115,7 @@ class DetailViewController: UIViewController {
     
     // add energy to our existing string
     let energyTitleString = NSAttributedString(string: "Energy ", attributes: styleFirstWordAttributesDictionary)
-    let energyBodyString = NSAttributedString(string: String(format: "%.3f", (usdaItem.energy as NSString).floatValue) + "%\n", attributes: style2AttributesDictionary)
+    let energyBodyString = NSAttributedString(string: String(format: "%.3f", (usdaItem.energy as NSString).floatValue) + " calories\n", attributes: style2AttributesDictionary)
     itemAttributedString.appendAttributedString(energyTitleString)
     itemAttributedString.appendAttributedString(energyBodyString)
     
@@ -130,6 +130,18 @@ class DetailViewController: UIViewController {
     let proteinBodyString = NSAttributedString(string: String(format: "%.3f", (usdaItem.protein as NSString).floatValue) + "%\n", attributes: style2AttributesDictionary)
     itemAttributedString.appendAttributedString(proteinTitleString)
     itemAttributedString.appendAttributedString(proteinBodyString)
+    
+    // add sugar to our existing string
+    let sugarTitleString = NSAttributedString(string: "Sugar ", attributes: styleFirstWordAttributesDictionary)
+    let sugarBodyString = NSAttributedString(string: String(format: "%.3f", (usdaItem.sugar as NSString).floatValue) + "%\n", attributes: style1AttributesDictionary)
+    itemAttributedString.appendAttributedString(sugarTitleString)
+    itemAttributedString.appendAttributedString(sugarBodyString)
+    
+    // add vitaminC to our existing string
+    let vitaminCTitleString = NSAttributedString(string: "Vitamin C ", attributes: styleFirstWordAttributesDictionary)
+    let vitaminCBodyString = NSAttributedString(string: String(format: "%.3f", (usdaItem.vitaminC as NSString).floatValue) + "%\n", attributes: style2AttributesDictionary)
+    itemAttributedString.appendAttributedString(vitaminCTitleString)
+    itemAttributedString.appendAttributedString(vitaminCBodyString)
     
     return itemAttributedString
     
