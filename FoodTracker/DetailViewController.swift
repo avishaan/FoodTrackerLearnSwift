@@ -97,49 +97,49 @@ class DetailViewController: UIViewController {
    
     // add calcium to our existing string
     let calciumTitleString = NSAttributedString(string: "Calcium ", attributes: styleFirstWordAttributesDictionary)
-    let calciumBodyString = NSAttributedString(string: String(format: "%.3f", (usdaItem.calcium as NSString).floatValue) + "%\n", attributes: style1AttributesDictionary)
+    let calciumBodyString = NSAttributedString(string: String(format: "%.3f", (usdaItem.calcium as NSString).floatValue) + "mg\n", attributes: style1AttributesDictionary)
     itemAttributedString.appendAttributedString(calciumTitleString)
     itemAttributedString.appendAttributedString(calciumBodyString)
     
     // add carbohydrate to our existing string
     let carbohydrateTitleString = NSAttributedString(string: "Carbohydrate ", attributes: styleFirstWordAttributesDictionary)
-    let carbohydrateBodyString = NSAttributedString(string: String(format: "%.3f", (usdaItem.carbohydrate as NSString).floatValue) + "%\n", attributes: style2AttributesDictionary)
+    let carbohydrateBodyString = NSAttributedString(string: String(format: "%.3f", (usdaItem.carbohydrate as NSString).floatValue) + "g\n", attributes: style2AttributesDictionary)
     itemAttributedString.appendAttributedString(carbohydrateTitleString)
     itemAttributedString.appendAttributedString(carbohydrateBodyString)
     
     // add cholesterol to our existing string
     let cholesterolTitleString = NSAttributedString(string: "Cholesterol ", attributes: styleFirstWordAttributesDictionary)
-    let cholesterolBodyString = NSAttributedString(string: String(format: "%.3f", (usdaItem.cholesterol as NSString).floatValue) + "%\n", attributes: style1AttributesDictionary)
+    let cholesterolBodyString = NSAttributedString(string: String(format: "%.3f", (usdaItem.cholesterol as NSString).floatValue) + "mg\n", attributes: style1AttributesDictionary)
     itemAttributedString.appendAttributedString(cholesterolTitleString)
     itemAttributedString.appendAttributedString(cholesterolBodyString)
     
     // add energy to our existing string
     let energyTitleString = NSAttributedString(string: "Energy ", attributes: styleFirstWordAttributesDictionary)
-    let energyBodyString = NSAttributedString(string: String(format: "%.3f", (usdaItem.energy as NSString).floatValue) + " calories\n", attributes: style2AttributesDictionary)
+    let energyBodyString = NSAttributedString(string: String(format: "%.3f", (usdaItem.energy as NSString).floatValue) + " Calories\n", attributes: style2AttributesDictionary)
     itemAttributedString.appendAttributedString(energyTitleString)
     itemAttributedString.appendAttributedString(energyBodyString)
     
     // add fatTotal to our existing string
     let fatTotalTitleString = NSAttributedString(string: "Fat Total ", attributes: styleFirstWordAttributesDictionary)
-    let fatTotalBodyString = NSAttributedString(string: String(format: "%.3f", (usdaItem.fatTotal as NSString).floatValue) + "%\n", attributes: style1AttributesDictionary)
+    let fatTotalBodyString = NSAttributedString(string: String(format: "%.3f", (usdaItem.fatTotal as NSString).floatValue) + "g\n", attributes: style1AttributesDictionary)
     itemAttributedString.appendAttributedString(fatTotalTitleString)
     itemAttributedString.appendAttributedString(fatTotalBodyString)
     
     // add protein to our existing string
     let proteinTitleString = NSAttributedString(string: "Protein ", attributes: styleFirstWordAttributesDictionary)
-    let proteinBodyString = NSAttributedString(string: String(format: "%.3f", (usdaItem.protein as NSString).floatValue) + "%\n", attributes: style2AttributesDictionary)
+    let proteinBodyString = NSAttributedString(string: String(format: "%.3f", (usdaItem.protein as NSString).floatValue) + "g\n", attributes: style2AttributesDictionary)
     itemAttributedString.appendAttributedString(proteinTitleString)
     itemAttributedString.appendAttributedString(proteinBodyString)
     
     // add sugar to our existing string
     let sugarTitleString = NSAttributedString(string: "Sugar ", attributes: styleFirstWordAttributesDictionary)
-    let sugarBodyString = NSAttributedString(string: String(format: "%.3f", (usdaItem.sugar as NSString).floatValue) + "%\n", attributes: style1AttributesDictionary)
+    let sugarBodyString = NSAttributedString(string: String(format: "%.3f", (usdaItem.sugar as NSString).floatValue) + "g\n", attributes: style1AttributesDictionary)
     itemAttributedString.appendAttributedString(sugarTitleString)
     itemAttributedString.appendAttributedString(sugarBodyString)
     
     // add vitaminC to our existing string
     let vitaminCTitleString = NSAttributedString(string: "Vitamin C ", attributes: styleFirstWordAttributesDictionary)
-    let vitaminCBodyString = NSAttributedString(string: String(format: "%.3f", (usdaItem.vitaminC as NSString).floatValue) + "%\n", attributes: style2AttributesDictionary)
+    let vitaminCBodyString = NSAttributedString(string: String(format: "%.3f", (usdaItem.vitaminC as NSString).floatValue) + "mg\n", attributes: style2AttributesDictionary)
     itemAttributedString.appendAttributedString(vitaminCTitleString)
     itemAttributedString.appendAttributedString(vitaminCBodyString)
     

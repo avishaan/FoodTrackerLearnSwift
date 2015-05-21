@@ -270,16 +270,16 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
       
       // convert to string
 //      var stringData = NSString(data: data, encoding: NSUTF8StringEncoding)
-//      println(stringData)
+//      println(stringData!)
       var conversionError:NSError?
       // convert string json to NSDictionary
       var jsonDictionary = NSJSONSerialization.JSONObjectWithData(data , options: NSJSONReadingOptions.MutableLeaves, error: &conversionError) as? NSDictionary
-      // println(jsonDictionary)
+      println(jsonDictionary)
       
       if conversionError != nil {
         println(conversionError!.localizedDescription)
         let errorString = NSString(data: data , encoding: NSUTF8StringEncoding)
-        println("Error in parsing: \(errorString?)")
+        println("Error in converting json to dictionary: \(errorString?)")
       } else {
         if jsonDictionary != nil {
           self.jsonResponse = jsonDictionary!
@@ -290,7 +290,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
           })
         } else {
           let errorString = NSString(data: data , encoding: NSUTF8StringEncoding)
-          println("Error in parsing: \(errorString?)")
+          println("Error in converting dictionary to tuples: \(errorString?)")
         }
       }
     })
