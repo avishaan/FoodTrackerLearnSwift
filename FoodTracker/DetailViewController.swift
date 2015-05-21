@@ -113,6 +113,24 @@ class DetailViewController: UIViewController {
     itemAttributedString.appendAttributedString(cholesterolTitleString)
     itemAttributedString.appendAttributedString(cholesterolBodyString)
     
+    // add energy to our existing string
+    let energyTitleString = NSAttributedString(string: "Energy ", attributes: styleFirstWordAttributesDictionary)
+    let energyBodyString = NSAttributedString(string: String(format: "%.3f", (usdaItem.energy as NSString).floatValue) + "%\n", attributes: style2AttributesDictionary)
+    itemAttributedString.appendAttributedString(energyTitleString)
+    itemAttributedString.appendAttributedString(energyBodyString)
+    
+    // add fatTotal to our existing string
+    let fatTotalTitleString = NSAttributedString(string: "Fat Total ", attributes: styleFirstWordAttributesDictionary)
+    let fatTotalBodyString = NSAttributedString(string: String(format: "%.3f", (usdaItem.fatTotal as NSString).floatValue) + "%\n", attributes: style1AttributesDictionary)
+    itemAttributedString.appendAttributedString(fatTotalTitleString)
+    itemAttributedString.appendAttributedString(fatTotalBodyString)
+    
+    // add protein to our existing string
+    let proteinTitleString = NSAttributedString(string: "Protein ", attributes: styleFirstWordAttributesDictionary)
+    let proteinBodyString = NSAttributedString(string: String(format: "%.3f", (usdaItem.protein as NSString).floatValue) + "%\n", attributes: style2AttributesDictionary)
+    itemAttributedString.appendAttributedString(proteinTitleString)
+    itemAttributedString.appendAttributedString(proteinBodyString)
+    
     return itemAttributedString
     
   }
