@@ -72,7 +72,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
   
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
     // check the identifier to make sure it's the segue we want
-    if segue.identifier == "toDetailedVCSegue" {
+    if segue.identifier == "toDetailVCSegue" {
       // it's the detailed view controller segue
       // check what the send was and display accordingly (nil sender means from api results and not favorited)
       if sender != nil {
@@ -175,12 +175,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     } else if selectedScopeButtonIndex == 2 {
       if self.searchController.active {
         // if search controller is active we have searched so get from the filteredFavorted items
-        let usdaItem = filteredFavoritedUSDAItems[indexPath.row].idValue
-        self.performSegueWithIdentifier("toDetailedVCSegue", sender: usdaItem)
+        let usdaItem = filteredFavoritedUSDAItems[indexPath.row]
+        self.performSegueWithIdentifier("toDetailVCSegue", sender: usdaItem)
       } else {
         // search controller not active, take it from the entire list of favorited USDA items
-        let usdaItem = favoritedUSDAItems[indexPath.row].idValue
-        self.performSegueWithIdentifier("toDetailedVCSegue", sender: usdaItem)
+        let usdaItem = favoritedUSDAItems[indexPath.row]
+        self.performSegueWithIdentifier("toDetailVCSegue", sender: usdaItem)
       }
     } else {
       
@@ -279,7 +279,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
       if conversionError != nil {
         println(conversionError!.localizedDescription)
         let errorString = NSString(data: data , encoding: NSUTF8StringEncoding)
-        println("Error in parsing: \(errorString)")
+        println("Error in parsing: \(errorString?)")
       } else {
         if jsonDictionary != nil {
           self.jsonResponse = jsonDictionary!
@@ -290,7 +290,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
           })
         } else {
           let errorString = NSString(data: data , encoding: NSUTF8StringEncoding)
-          println("Error in parsing: \(errorString)")
+          println("Error in parsing: \(errorString?)")
         }
       }
     })
