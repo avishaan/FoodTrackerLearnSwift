@@ -97,19 +97,19 @@ class DetailViewController: UIViewController {
    
     // add calcium to our existing string
     let calciumTitleString = NSAttributedString(string: "Calcium ", attributes: styleFirstWordAttributesDictionary)
-    let calciumBodyString = NSAttributedString(string: String(format: "%.2f", usdaItem.calcium) + "%\n", attributes: style1AttributesDictionary)
+    let calciumBodyString = NSAttributedString(string: String(format: "%.3f", (usdaItem.calcium as NSString).floatValue) + "%\n", attributes: style1AttributesDictionary)
     itemAttributedString.appendAttributedString(calciumTitleString)
     itemAttributedString.appendAttributedString(calciumBodyString)
     
     // add carbohydrate to our existing string
     let carbohydrateTitleString = NSAttributedString(string: "Carbohydrate ", attributes: styleFirstWordAttributesDictionary)
-    let carbohydrateBodyString = NSAttributedString(string: "\(usdaItem.carbohydrate)% \n", attributes: style2AttributesDictionary)
+    let carbohydrateBodyString = NSAttributedString(string: String(format: "%.3f", (usdaItem.carbohydrate as NSString).floatValue) + "%\n", attributes: style2AttributesDictionary)
     itemAttributedString.appendAttributedString(carbohydrateTitleString)
     itemAttributedString.appendAttributedString(carbohydrateBodyString)
     
     // add cholesterol to our existing string
     let cholesterolTitleString = NSAttributedString(string: "Cholesterol ", attributes: styleFirstWordAttributesDictionary)
-    let cholesterolBodyString = NSAttributedString(string: "\(usdaItem.cholesterol)% \n", attributes: style1AttributesDictionary)
+    let cholesterolBodyString = NSAttributedString(string: String(format: "%.3f", (usdaItem.cholesterol as NSString).floatValue) + "%\n", attributes: style1AttributesDictionary)
     itemAttributedString.appendAttributedString(cholesterolTitleString)
     itemAttributedString.appendAttributedString(cholesterolBodyString)
     
