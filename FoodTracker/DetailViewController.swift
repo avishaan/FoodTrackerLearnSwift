@@ -58,6 +58,7 @@ class DetailViewController: UIViewController {
   }
   
   @IBAction func eatItBarButtonItemPressed(sender: UIBarButtonItem) {
+    saveFoodItem(self.usdaItem!)
   }
   
   func createAttributedString(usdaItem: USDAItem!) -> NSAttributedString {
