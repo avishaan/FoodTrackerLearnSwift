@@ -176,7 +176,7 @@ class DetailViewController: UIViewController {
     
     var store:HealthStoreConstant = HealthStoreConstant()
     // get access to the healthstore
-    store.healthStore.requestAuthorizationToShareTypes(NSSet(array: dataTypeToWrite), readTypes: NSSet(array: dataTypesToRead)) { (success, error) -> Void in
+    store.healthStore?.requestAuthorizationToShareTypes(NSSet(array: dataTypeToWrite), readTypes: NSSet(array: dataTypesToRead)) { (success, error) -> Void in
       if success {
         println("User completed auth request.")
       } else {
@@ -221,6 +221,20 @@ class DetailViewController: UIViewController {
       
       let cholesterolUnit = HKQuantity(unit: HKUnit.gramUnitWithMetricPrefix(HKMetricPrefix.Milli), doubleValue: (foodItem.cholesterol as NSString).doubleValue)
       let cholesterol = HKQuantitySample(type: HKQuantityType.quantityTypeForIdentifier(HKQuantityTypeIdentifierDietaryCholesterol), quantity: cholesterolUnit, startDate: timeFoodWasEntered, endDate: timeFoodWasEntered)
+      
+      let foodDataSet = NSSet(array: [calories, calcium, carbohydrates, cholesterol, fatTotal, protein, sugar, vitaminC])
+      
+      let foodCorrelation = HKCorrelation(type: HKCorrelationType.correlationTypeForIdentifier(HKCorrelationTypeIdentifierFood), startDate: timeFoodWasEntered, endDate: timeFoodWasEntered, objects: foodDataSet, metadata: foodMetaData)
+      
+      // write this to the health store
+      var store:HealthStoreConstant = HealthStoreConstant()
+      store.healthStore?.saveObject(foodCorrelation, withCompletion: { (success, error) -> Void in
+        if success {
+          println("saved to healthstore successfully")
+        } else {
+          println("did not save to health store, error: \(error)")
+        }
+      })
       
     } else {
       // you would tell the user here if healthkit was not available
