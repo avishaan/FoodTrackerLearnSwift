@@ -27,6 +27,8 @@ class DetailViewController: UIViewController {
     super.viewDidLoad()
     
     // Do any additional setup after loading the view.
+    // request auth for healthstore
+    requestAuthorizationForHealthStore()
     
     // one spot we can get the USDAItem is here other is based on NSNotification
     if self.usdaItem != nil {
@@ -171,6 +173,32 @@ class DetailViewController: UIViewController {
       HKQuantityType.quantityTypeForIdentifier(HKQuantityTypeIdentifierDietarySugar),
       HKQuantityType.quantityTypeForIdentifier(HKQuantityTypeIdentifierDietaryVitaminC)
     ]
+    
+    var store:HealthStoreConstant = HealthStoreConstant()
+    // get access to the healthstore
+    store.healthStore.requestAuthorizationToShareTypes(NSSet(array: dataTypeToWrite), readTypes: NSSet(array: dataTypesToRead)) { (success, error) -> Void in
+      if success {
+        println("User completed auth request.")
+      } else {
+        println("User canceled the request \(error)")
+      }
+      
+    }
+    
+  }
+  func saveFoodItem (foodItem:USDAItem) {
+    // make sure it is available
+    if HKHealthStore.isHealthDataAvailable() {
+      
+      let timeFoodWasEntered = NSDate()
+      let foodMetaData = [
+        HKMetadataKeyFoodType: foodItem.name,
+        "HKBrandName": "USDAItem",
+        "HKFoodTypeID": foodItem.idValue
+      ]
+    } else {
+      // you would tell the user here if healthkit was not available
+    }
     
   }
 }
